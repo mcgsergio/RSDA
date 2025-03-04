@@ -14,20 +14,15 @@ st.set_page_config(page_title="Gestión R.S.D. Alcalá", page_icon="⚽", layout
 logo_path = "escudo_rsda.jpeg"  # Asegúrate de tener esta imagen en tu directorio de trabajo
 escudo = Image.open(logo_path)
 
-# Función para conectar a la base de datos
-
-import psycopg2
-import streamlit as st
-
 # Función para conectar a Neon PostgreSQL
 def conectar_db():
     try:
         conn = psycopg2.connect(
-            dbname="noendb",
+            dbname="neondb",
             user="noendb_owner",
             password="npg_zb5KRcaP2tEv",
             host="ep-withered-forest-a9pxhxag-pooler.gwc.azure.neon.tech",
-            port="5432"
+            port="5432",
             sslmode = "require"
         )
         return conn

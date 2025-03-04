@@ -3,6 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mysql.connector
 from PIL import Image
+import psycopg2
+import streamlit as st
+
 
 # Configuración de la página
 st.set_page_config(page_title="Gestión R.S.D. Alcalá", page_icon="⚽", layout="wide")
@@ -14,11 +17,8 @@ escudo = Image.open(logo_path)
 # Función para conectar a la base de datos
 
 def conectar_db():
-    return mysql.connector.connect(
-        host="localhost",   # Cambiar si la BD está en un servidor remoto
-        user="root",  # Reemplaza con tu usuario de MySQL
-        password="",  # Reemplaza con tu contraseña
-        database="RSDA"
+    return psycopg2.connect(
+        postgresql://neondb_owner:npg_zb5KRcaP2tEv@ep-withered-forest-a9pxhxag-pooler.gwc.azure.neon.tech/neondb?sslmode=require  # 🔹 Reemplaza con la URL que copiaste de Neon
     )
 
 # Funciones para obtener datos de la base de datos

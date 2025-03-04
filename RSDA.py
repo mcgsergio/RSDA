@@ -16,10 +16,25 @@ escudo = Image.open(logo_path)
 
 # Función para conectar a la base de datos
 
+import psycopg2
+import streamlit as st
+
+# Función para conectar a Neon PostgreSQL
 def conectar_db():
-    return psycopg2.connect(
-        postgresql://neondb_owner:npg_zb5KRcaP2tEv@ep-withered-forest-a9pxhxag-pooler.gwc.azure.neon.tech/neondb?sslmode=require  # 🔹 Reemplaza con la URL que copiaste de Neon
-    )
+    try:
+        conn = psycopg2.connect(
+            dbname="noendb",
+            user="noendb_owner",
+            password="npg_zb5KRcaP2tEv",
+            host="ep-withered-forest-a9pxhxag-pooler.gwc.azure.neon.tech",
+            port="5432"
+            sslmode = "require"
+        )
+        return conn
+    except Exception as e:
+        st.error(f"Error al conectar con la base de datos: {e}")
+        return None
+
 
 # Funciones para obtener datos de la base de datos
 def obtener_equipos():
